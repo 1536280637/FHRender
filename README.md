@@ -6,6 +6,9 @@
 
 ![icon](./build/icon.png)
 
+界面演示：<img width="1320" height="860" alt="image" src="https://github.com/user-attachments/assets/6a2e7ec1-9521-4bd6-b001-e8cc425b4705" />
+
+
 ## 功能
 
 - **项目管理**：识别 HyperFrames 项目（`index.html` / `package.json` / `hyperframes.json`），读取分辨率与时长，支持最近项目与手动指定 composition

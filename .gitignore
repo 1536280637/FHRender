@@ -1,0 +1,17 @@
+node_modules/
+out/
+release/
+dist/
+dist-pkg/
+dist-pkg2/
+*.log
+.DS_Store
+.workbuddy/
+.vite/
+
+# 内部工作报告，暂不公开（如需公开删除下面几行即可）
+CLEANUP-SYSTEM-REPORT.md
+FIX-REPORT-*.md
+PERF-COMPARISON-DIAGNOSIS.md
+PERF-METADATA-CACHE-REPORT.md
+TEST-REPORT.md

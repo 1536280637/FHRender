@@ -1,0 +1,105 @@
+{
+  "name": "hf-render",
+  "productName": "HF Render",
+  "version": "1.0.0",
+  "description": "HF Render — HyperFrames 视频项目本地渲染桌面工具",
+  "main": "out/main/index.js",
+  "author": "HF Render",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "node scripts/build.mjs",
+    "start": "node scripts/build.mjs && electron .",
+    "typecheck": "tsc --noEmit",
+    "test:comparison": "esbuild scripts/comparison-test.ts --bundle --platform=node --target=node20 --format=cjs --alias:electron=./scripts/electron-stub.cjs --outfile=.workbuddy/tmp/comparison-test.cjs --log-level=warning && node .workbuddy/tmp/comparison-test.cjs",
+    "test:logic": "esbuild scripts/logic-test.ts --bundle --platform=node --target=node20 --format=cjs --alias:electron=./scripts/electron-stub.cjs --outfile=.workbuddy/tmp/logic-test.cjs --log-level=warning && node .workbuddy/tmp/logic-test.cjs",
+    "dist": "node scripts/build.mjs && electron-builder --win",
+    "dist:dir": "node scripts/build.mjs && electron-builder --win --dir",
+    "dist:mac": "node scripts/build.mjs && electron-builder --mac",
+    "dist:linux": "node scripts/build.mjs && electron-builder --linux",
+    "test:metadata": "esbuild scripts/metadata-test.ts --bundle --platform=node --target=node20 --format=cjs --alias:electron=./scripts/electron-stub.cjs --outfile=.workbuddy/tmp/metadata-test.cjs --log-level=warning && node .workbuddy/tmp/metadata-test.cjs",
+    "test:cleanup": "esbuild scripts/cleanup-test.ts --bundle --platform=node --target=node20 --format=cjs --alias:electron=./scripts/electron-stub.cjs --outfile=.workbuddy/tmp/cleanup-test.cjs --log-level=warning && node .workbuddy/tmp/cleanup-test.cjs",
+    "test:cleanup:e2e": "esbuild scripts/cleanup-e2e.ts --bundle --platform=node --target=node20 --format=cjs --alias:electron=./scripts/electron-e2e-stub.cjs --outfile=.workbuddy/tmp/cleanup-e2e.cjs --log-level=warning && node .workbuddy/tmp/cleanup-e2e.cjs",
+    "test:render-config": "esbuild scripts/render-config-test.ts --bundle --platform=node --target=node20 --format=cjs --alias:electron=./scripts/electron-stub.cjs --outfile=.workbuddy/tmp/render-config-test.cjs --log-level=warning && node .workbuddy/tmp/render-config-test.cjs",
+    "test:render-config:e2e": "esbuild scripts/render-config-e2e.ts --bundle --platform=node --target=node20 --format=cjs --alias:electron=./scripts/electron-e2e-stub.cjs --outfile=.workbuddy/tmp/render-config-e2e.cjs --log-level=warning && node .workbuddy/tmp/render-config-e2e.cjs",
+    "test:preview-state": "esbuild scripts/preview-state-test.ts --bundle --platform=node --target=node20 --format=cjs --alias:electron=./scripts/electron-e2e-stub.cjs --outfile=.workbuddy/tmp/preview-state-test.cjs --log-level=warning && node .workbuddy/tmp/preview-state-test.cjs"
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "electron": "^44.9.0",
+    "electron-builder": "^26.15.3",
+    "esbuild": "^0.28.2",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.4"
+  },
+  "build": {
+    "appId": "com.hfrender.app",
+    "productName": "HF Render",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "out/**/*",
+      "build/icon.ico",
+      "package.json"
+    ],
+    "asar": true,
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico",
+      "artifactName": "HF-Render-${version}-${arch}-Setup.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "HF Render"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "category": "public.app-category.video",
+      "icon": "build/icon.png",
+      "artifactName": "HF-Render-${version}-${arch}.${ext}"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "category": "AudioVideo",
+      "icon": "build/icon.png",
+      "artifactName": "HF-Render-${version}-${arch}.${ext}"
+    }
+  }
+}

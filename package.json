@@ -2,7 +2,7 @@
   "name": "hf-render",
   "productName": "HF Render",
   "version": "1.0.0",
-  "description": "HF Render — HyperFrames 视频项目本地渲染桌面工具",
+  "description": "可视化 HyperFrames 渲染工具",
   "main": "out/main/index.js",
   "author": "HF Render",
   "license": "MIT",
